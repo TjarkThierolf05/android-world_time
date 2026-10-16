@@ -1,5 +1,6 @@
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class WorldTime {
 
@@ -7,6 +8,7 @@ class WorldTime {
   late String time; // the time in that location
   String flag; // url to an asset flag icon
   String url; // location url for api endpoint
+  late bool isDayTime; // true or false if daytime or not
 
   late Map data;
   late String weekday;
@@ -48,19 +50,16 @@ class WorldTime {
       if (offset_posneg == "+") {
         now = now.add(Duration(hours: int.parse(offset_hours)));
         now = now.add(Duration(minutes: int.parse(offset_minutes)));
-        time = now.toString(); // set the time property
       }
       else if (offset_posneg == "-") {
         now = now.subtract(Duration(hours: int.parse(offset_hours)));
         now = now.add(Duration(minutes: int.parse(offset_minutes)));
-        time = now.toString(); // set the time property
       }
       else {
       }
 
-      print("Date: " + now.toString().substring(0, 10));
-      print("Time: " + now.toString().substring(11, 19));
-      print("Offset: " + utc_offset);
+      isDayTime = now.hour > 6 && now.hour < 20 ? true : false;
+      time = DateFormat.jm().format(now);
     }
     catch (e) {
       print('Caught error: $e');
