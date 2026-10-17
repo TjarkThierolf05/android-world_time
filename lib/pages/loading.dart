@@ -16,23 +16,16 @@ class _LoadingState extends State<Loading> {
     await beispiel.getAPIresponse();
 
     await beispiel.getTime();
-    Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'location': beispiel.location,
-      'flag': beispiel.flag,
-      'time': beispiel.time,
-      'isDayTime': beispiel.isDayTime,
-    });
-
     //print(beispiel.time);
     //setState(() {time = beispiel.time;});
 //
     //await Future.delayed(const Duration(seconds: 2));
-    //await beispiel.getWeekday();
+    await beispiel.getWeekday();
     //print(beispiel.weekday);
     //setState(() {weekday = beispiel.weekday;});
 //
     //await Future.delayed(const Duration(seconds: 2));
-    //await beispiel.getTimezone();
+    await beispiel.getTimezone();
     //print(beispiel.timezone[0]);
     //print(beispiel.timezone[1]);
     //setState(() {
@@ -41,14 +34,26 @@ class _LoadingState extends State<Loading> {
     //});
 //
     //await Future.delayed(const Duration(seconds: 2));
-    //await beispiel.getWeekNumber();
+    await beispiel.getWeekNumber();
     //print(beispiel.week_number);
     //setState(() {week_number = beispiel.week_number.toString();});
 //
     //await Future.delayed(const Duration(seconds: 2));
-    //await beispiel.getDayOfYear();
+    await beispiel.getDayOfYear();
     //print(beispiel.day_of_year);
     //setState(() {day_of_year = beispiel.day_of_year.toString();});
+
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': beispiel.location,
+      'flag': beispiel.flag,
+      'time': beispiel.time,
+      'isDayTime': beispiel.isDayTime,
+      'timezone': beispiel.timezone,
+      'weekday': beispiel.weekday,
+      'week_number': beispiel.week_number,
+      'day_of_year': beispiel.day_of_year,
+      'date': beispiel.date,
+    });
   }
 
   @override

@@ -15,6 +15,7 @@ class WorldTime {
   late List timezone;
   late int week_number;
   late int day_of_year;
+  late String date;
 
   WorldTime({
     required this.location,
@@ -59,6 +60,7 @@ class WorldTime {
       }
 
       isDayTime = now.hour > 6 && now.hour < 20 ? true : false;
+      date = DateFormat.yMMMMd().format(now);
       time = DateFormat.jm().format(now);
     }
     catch (e) {
